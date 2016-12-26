@@ -1,0 +1,22 @@
+---
+title: "Coursera R Markdown and Leaflet - Week 2 Assignment"
+author: "Jérôme Dauge"
+date: "December 26, 2016"
+output: html_document
+---
+
+We are placing 30 circle of random radius at some (random) place in London.
+
+```{r, echo=FALSE}
+library(leaflet)
+base_longitude <- -0.1275
+base_latitude <- 51.507222
+rand_longitude = function(n = 10) {
+  rnorm(n, base_longitude, .01)
+}
+rand_latitude = function(n = 10) {
+  rnorm(n, base_latitude, .01)
+}
+map = leaflet() %>% addTiles() %>% addCircles(rand_longitude(50), rand_latitude(50), radius = runif(30, 10, 200))
+map
+```
